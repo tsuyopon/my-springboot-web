@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/sample")
 public class SampleController {
 
-        @GetMapping("/test")
-        public String test(Model model){
-            model.addAttribute("title", "Inquiry Form");
-            return "test";  // test.html
-        }
+    //  /sample/test
+    @GetMapping("/test")
+    public String test(Model model){
+        model.addAttribute("title", "Inquiry Form");
+        return "test";  // test.html
+    }
 }
