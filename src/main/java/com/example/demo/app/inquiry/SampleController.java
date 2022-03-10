@@ -1,5 +1,8 @@
 package com.example.demo.app.inquiry;
 
+import com.example.demo.entity.Inquiry;
+import com.example.demo.service.InquiryNotFoundException;
+import com.example.demo.service.InquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -18,10 +21,12 @@ import java.util.Map;
 public class SampleController {
 
     private final JdbcTemplate jdbcTemplate;
+    private final InquiryService inquiryService;
 
     @Autowired
-    public SampleController(JdbcTemplate jdbcTemplate) {
+    public SampleController(JdbcTemplate jdbcTemplate, InquiryService inquiryService) {
         this.jdbcTemplate = jdbcTemplate;
+        this.inquiryService = inquiryService;
     }
 
     //  /sample/test
@@ -46,5 +51,29 @@ public class SampleController {
         model.addAttribute("email", map.get("email"));
         return "select"; // select.html
     }
+
+    //  /sample/update_error
+    //
+    //  強制的に更新エラーを引き起こさせるためのエンドポイントです。
+    //  メソッドの中で独自で定義した例外(InquiryNotFoundException)を捕捉する
+    @GetMapping("/update_error")
+    public String update_error(Model model){
+
+        Inquiry inquiry = new Inquiry();
+        inquiry.setId(4);
+        inquiry.setName("hoge4");
+        inquiry.setEmail("sample4@sample.com");
+        inquiry.setContents("Hello4");
+
+        try {
+            inquiryService.update((inquiry));
+        } catch (InquiryNotFoundException e) {
+            model.addAttribute("message", e);
+            return "error/CustomPage";
+        }
+
+        return "test";  // test.html
+    }
+
 
 }
