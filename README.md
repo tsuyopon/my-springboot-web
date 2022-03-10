@@ -32,6 +32,9 @@ My Spring Boot Web Application Sample for exercise
 - 完了エントリポイント(画面はなく登録完了後にリダイレクト): /inquiry/complete
 - お問い合わせ画面: /inquiry/form
 
+強制的にSQL更新エラーを引き起こしてカスタム例外を捕捉するエントリポイントの追加
+- /inquiry/update_error
+
 
 # 機能
 - main(@SpringBootApplication), Controller(@Controller), Service(@Service), Dao(@Repository)の利用
@@ -39,3 +42,5 @@ My Spring Boot Web Application Sample for exercise
 - H2 Databaseへの機能 
   - src/main/resources/のdata.sql, schema.sqlは自動的に読み込まれます。data.sqlは自動的にデータベースにSQLが取り込まれています。
 - 例外の補足
+  - RuntimeExceptioを継承したカスタムExceptionの定義
+  - メソッド内例外捕捉、コントローラ内例外捕捉、全コントローラ内例外補足
