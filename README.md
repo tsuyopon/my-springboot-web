@@ -24,6 +24,7 @@ My Spring Boot Web Application Sample for exercise
 
 ## HelloWorld
 - サンプル: /sample/test
+- 強制的に例外エラーを発生させる: /sample/select
 
 ## お問い合わせ
 - お問い合わせ画面: /inquiry/form
@@ -37,3 +38,4 @@ My Spring Boot Web Application Sample for exercise
   - controller => service => dao => entity(O/Rマッピング)
 - H2 Databaseへの機能 
   - src/main/resources/のdata.sql, schema.sqlは自動的に読み込まれます。data.sqlは自動的にデータベースにSQLが取り込まれています。
+- 例外の補足
