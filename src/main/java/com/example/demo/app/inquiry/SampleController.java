@@ -5,6 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Springbootの基本処理を確認するだけのControllerです
+ * /sample/testとアクセスすると画面を表示するHello Worldプログラムです。
+ */
 @Controller
 @RequestMapping("/sample")
 public class SampleController {

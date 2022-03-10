@@ -18,3 +18,22 @@ My Spring Boot Web Application Sample for exercise
   - Packaging: Jar
   - Java: 11
 
+
+# エントリポイント
+デフォルトはhttp://localhost:8080/で稼働します。
+
+## HelloWorld
+- サンプル: /sample/test
+
+## お問い合わせ
+- お問い合わせ画面: /inquiry/form
+- 入力内容確認画面: /inquiry/confirm
+- 完了エントリポイント(画面はなく登録完了後にリダイレクト): /inquiry/complete
+- お問い合わせ画面: /inquiry/form
+
+
+# 機能
+- main(@SpringBootApplication), Controller(@Controller), Service(@Service), Dao(@Repository)の利用
+  - controller => service => dao => entity(O/Rマッピング)
+- H2 Databaseへの機能 
+  - src/main/resources/のdata.sql, schema.sqlは自動的に読み込まれます。data.sqlは自動的にデータベースにSQLが取り込まれています。
