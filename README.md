@@ -30,7 +30,9 @@ My Spring Boot Web Application Sample for exercise
 - お問い合わせ画面: /inquiry/form
 - 入力内容確認画面: /inquiry/confirm
 - 完了エントリポイント(画面はなく登録完了後にリダイレクト): /inquiry/complete
-- お問い合わせ画面: /inquiry/form
+- お問い合わせ一覧画面:
+  - /inquiry/index
+  - /inquiry/index_boot (Bootstrapライブラリを利用したバージョン。機能は/inquiry/indexと同じ)
 
 強制的にSQL更新エラーを引き起こしてカスタム例外を捕捉するエントリポイントの追加
 - /inquiry/update_error

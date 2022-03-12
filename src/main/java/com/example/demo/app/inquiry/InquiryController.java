@@ -26,8 +26,9 @@ public class InquiryController {
         this.inquiryService = inquiryService;
     }
 
+    // /inquiry/index(GET)
     // お問い合わせ一覧ページ
-    @GetMapping
+    @GetMapping("/index")
     public String index(Model model){
         List<Inquiry> list = inquiryService.getAll();
 
@@ -35,6 +36,18 @@ public class InquiryController {
         model.addAttribute("title", "inquiryIndex");
 
         return "inquiry/index";
+    }
+
+    // /inquiry/index_boot(GET)
+    // お問い合わせ一覧ページ(/indexをbootstrapで表示したもの)
+    @GetMapping("/index_boot")
+    public String index_boot(Model model){
+        List<Inquiry> list = inquiryService.getAll();
+
+        model.addAttribute("inquiryList", list);
+        model.addAttribute("title", "inquiryIndex");
+
+        return "inquiry/index_boot";
     }
 
     // /inquery/form (GET)
