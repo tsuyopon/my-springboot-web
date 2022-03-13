@@ -37,6 +37,9 @@ My Spring Boot Web Application Sample for exercise
 強制的にSQL更新エラーを引き起こしてカスタム例外を捕捉するエントリポイントの追加
 - /inquiry/update_error
 
+AOPのライブラリの追加
+- DemoInvocation.java: メソッドの実行前後に共通でログを出力させるようにする
+
 ## サンプル系
 - 外部設定読み込み
   - @Valuesの利用: /examples/test1
