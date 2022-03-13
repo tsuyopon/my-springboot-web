@@ -5,3 +5,14 @@ spring:
     username: sa
     password:
   h2.console.enabled: true
+
+# 以下、設定値取得サンプル用
+app:
+  name: "sample"
+  version: 0.0
+  sample1controller:
+    name: "Sample1 Application"
+    version: 1.0
+  sample2controller:
+    name: "Sample2 Application"
+    version: 2.0
