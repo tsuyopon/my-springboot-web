@@ -37,6 +37,12 @@ My Spring Boot Web Application Sample for exercise
 強制的にSQL更新エラーを引き起こしてカスタム例外を捕捉するエントリポイントの追加
 - /inquiry/update_error
 
+## サンプル系
+- 外部設定読み込み
+  - @Valuesの利用: /examples/test1
+  - @ConfigurationPropertiesの利用: /examples/test2
+- @Profileによるメソッドの環境別出し訳サンプル: /examples/profile
+
 
 # 機能
 - main(@SpringBootApplication), Controller(@Controller), Service(@Service), Dao(@Repository)の利用

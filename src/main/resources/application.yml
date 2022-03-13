@@ -5,6 +5,8 @@ spring:
     username: sa
     password:
   h2.console.enabled: true
+  # 環境のProfileや application-<env>.ymlに影響
+  #profiles.active: development
 
 # 以下、設定値取得サンプル用
 app:
