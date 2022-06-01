@@ -18,3 +18,9 @@ app:
   sample2controller:
     name: "Sample2 Application"
     version: 2.0
+
+# DEBUGにすると非常に多くのSpring Bootのデバッグログまで出力されます。
+# 設定項目参考: https://b1san-blog.com/post/spring/spring-log/
+logging:
+  level:
+    root: INFO
