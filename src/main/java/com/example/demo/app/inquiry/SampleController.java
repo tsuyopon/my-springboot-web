@@ -1,15 +1,14 @@
 package com.example.demo.app.inquiry;
 
 import com.example.demo.service.InquiryService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -20,6 +19,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/sample")
 public class SampleController {
+
+    private static Log log = LogFactory.getLog(SampleController.class);
 
     private final JdbcTemplate jdbcTemplate;
     private final InquiryService inquiryService;
@@ -40,7 +41,16 @@ public class SampleController {
     // 特定のメソッドにリクエストが来た際には405 Method Not Allowedとして /sample/testを処理させる
     @RequestMapping(value="/test", method = { RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
     @ResponseStatus(value=HttpStatus.METHOD_NOT_ALLOWED)
-    public String testMethodNotAllowed(){
+    public String testMethodNotAllowed(@RequestParam(required = false, value="debug", defaultValue="") String debug){
+
+        // debugパラメータに値があればデバッグログを出力する
+        if(debug == null ){ // defaultValueを与える場合にはnullが指定できないのでここには入らない
+            log.debug("######## debug parameter is not set");
+        } else if (debug == "") {
+            log.debug("######## debug parameter is set but empty");
+        } else {
+            log.debug("######## debug parameter accepted: " + debug);
+        }
         return null;  // nullの場合にはempty responseになります。
     }
 
