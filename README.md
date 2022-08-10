@@ -18,6 +18,11 @@ My Spring Boot Web Application Sample for exercise
   - Packaging: Jar
   - Java: 11
 
+# 起動方法
+以下で起動することができます。
+```
+$ gradle bootRun
+```
 
 # エントリポイント
 デフォルトはhttp://localhost:8080/で稼働します。
@@ -55,3 +60,4 @@ AOPのライブラリの追加
 - 例外の補足
   - RuntimeExceptioを継承したカスタムExceptionの定義
   - メソッド内例外捕捉、コントローラ内例外捕捉、全コントローラ内例外補足
+- 各マッピングの前後で共通処理機能のInterceptor

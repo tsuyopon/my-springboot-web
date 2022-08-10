@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.servlet.HandlerInterceptor;
 import java.util.Map;
 
 /**
@@ -18,7 +18,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/sample")
-public class SampleController {
+public class SampleController implements HandlerInterceptor {
 
     private static Log log = LogFactory.getLog(SampleController.class);
 
@@ -34,6 +34,7 @@ public class SampleController {
     //  /sample/test
     @GetMapping("/test")
     public String test(Model model){
+        log.debug("GET /sample/test start");
         model.addAttribute("title", "Inquiry Form");
         return "test";  // test.html
     }
@@ -42,6 +43,8 @@ public class SampleController {
     @RequestMapping(value="/test", method = { RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
     @ResponseStatus(value=HttpStatus.METHOD_NOT_ALLOWED)
     public String testMethodNotAllowed(@RequestParam(required = false, value="debug", defaultValue="") String debug){
+
+        log.debug("Other than GET /sample/test start");
 
         // debugパラメータに値があればデバッグログを出力する
         if(debug == null ){ // defaultValueを与える場合にはnullが指定できないのでここには入らない
@@ -54,7 +57,7 @@ public class SampleController {
         return null;  // nullの場合にはempty responseになります。
     }
 
-    //  /sample/select
+    //  /sample/select **データが取得できないため、必ずエラーが表示されます**
     //
     //  データが取得できずに例外が飛ぶために、その後WebMvcControllerAdviceの例外補足で処理される
     @GetMapping("/select")
