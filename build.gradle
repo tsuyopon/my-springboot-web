@@ -20,6 +20,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'com.h2database:h2'
+
+	// @EnableRetryや@Retryableを利用するために必要。合わせてspring-boot-starter-aopも必要です。
+	//   cf. https://www.baeldung.com/spring-retry
+	implementation 'org.springframework.retry:spring-retry'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
