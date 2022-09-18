@@ -1,0 +1,8 @@
+
+app:
+  configcontroller:
+    # @Profile("local")が指定されていれば、application.ymlではなく以下の設定から取得する
+    test2_domain: "prod2-local.co.jp"
+    # 環境変数ENV_TEST3_DOMAINから取得し、なければデフォルトでprod3-local.co.jpとなる。
+    # 環境変数が設定されておらず、下記環境変数のデフォルト値も指定していない場合にはapplication.ymlが参照される
+    test3_domain: ${ENV_TEST3_DOMAIN:prod3-local.co.jp}

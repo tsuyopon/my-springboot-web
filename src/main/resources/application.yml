@@ -18,6 +18,12 @@ app:
   sample2controller:
     name: "Sample2 Application"
     version: 2.0
+  configcontroller:
+    test1_domain: "prod1.co.jp"
+    # application-local.ymlで指定された値によって上書きされる。
+    test2_domain: "prod2.co.jp"
+    # application-local.ymlで環境変数(またはデフォルト値)によって上書きされる
+    test3_domain: "prod3.co.jp"
 
 # logging.level.rootをDEBUGにすると非常に多くのSpring Bootのデバッグログまで出力されます。
 # logging.levelにあるcom.example.demoはこのデモアプリケーションのクラスパスを指定しています。

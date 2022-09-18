@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 // spring.profiles.active=developmentの場合に呼ばれます
 @Component
-@Profile("development")
+@Profile({"development","local"})
 public class DevelopmentProfile implements ProfileSample {
     public String getValue() {
         return "This is development";
