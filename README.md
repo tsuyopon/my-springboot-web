@@ -1,63 +1,48 @@
 # my-springboot-web
-My Spring Boot Web Application Sample for exercise
+複数の項目を同時にチェックしてバリデーションを行う方法です(相関チェック又は相関バリデーションと呼ばれます)。
+
+この方法に記載された３つの方法があります。
+- https://penguinlabo.hatenablog.com/entry/springboot/web/7_correlationvalidation
 
 
-このレポジトリは以下から生成したものに対して修正を加えています。
-- https://start.spring.io/
-
-上記サイトの2022/03/06デフォルト値として指定されている以下の値が選択されています。
-- Project: Gradle
-- Lauguage: Java
-- Spring Boot: 2.6.4
-- Project Metadata
-  - Group: com.example
-  - Artifact: demo
-  - Name: demo
-  - Description: Demo project for Spring Boot
-  - Package name: com.example.demo
-  - Packaging: Jar
-  - Java: 11
-
-# 起動方法
-以下で起動することができます。
-```
-$ gradle bootRun
-```
-
-# エントリポイント
-デフォルトはhttp://localhost:8080/で稼働します。
-
-## HelloWorld
-- サンプル: /sample/test
-- 強制的に例外エラーを発生させる: /sample/select
-
-## お問い合わせ
-- お問い合わせ画面: /inquiry/form
-- 入力内容確認画面: /inquiry/confirm
-- 完了エントリポイント(画面はなく登録完了後にリダイレクト): /inquiry/complete
-- お問い合わせ一覧画面:
-  - /inquiry/index
-  - /inquiry/index_boot (Bootstrapライブラリを利用したバージョン。機能は/inquiry/indexと同じ)
-
-強制的にSQL更新エラーを引き起こしてカスタム例外を捕捉するエントリポイントの追加
-- /inquiry/update_error
-
-AOPのライブラリの追加
-- DemoInvocation.java: メソッドの実行前後に共通でログを出力させるようにする
-
-## サンプル系
-- 外部設定読み込み
-  - @Valuesの利用: /examples/test1
-  - @ConfigurationPropertiesの利用: /examples/test2
-- @Profileによるメソッドの環境別出し訳サンプル: /examples/profile
+- 方法1 - フォームBeanに検証メソッドを実装
+  - 実装量が非常に少ないが、1つのフォームに複数のバリデーションを実装すると、Beanのコードがカオスな状態となるようです。(上記資料ではお勧めされていません)
+- 方法2 - バリデーションアノテーションを自作
+- 方法3 - Springバリデーションを実装
 
 
-# 機能
-- main(@SpringBootApplication), Controller(@Controller), Service(@Service), Dao(@Repository)の利用
-  - controller => service => dao => entity(O/Rマッピング)
-- H2 Databaseへの機能 
-  - src/main/resources/のdata.sql, schema.sqlは自動的に読み込まれます。data.sqlは自動的にデータベースにSQLが取り込まれています。
-- 例外の補足
-  - RuntimeExceptioを継承したカスタムExceptionの定義
-  - メソッド内例外捕捉、コントローラ内例外捕捉、全コントローラ内例外補足
-- 各マッピングの前後で共通処理機能のInterceptor
+# 方法
+詳細はコードを見てみてください。
+
+## 実装方法1
+- @AssertTrueアノテーションをメソッドに指定する。
+- メソッドは、存在しないフィールドのgetterメソッドとして実装する。
+- getterメソッドなので、メソッド名は「is」もしくは「get」で始まる必要がある。
+- テンプレート側では「is」や「get」を抜いて、先頭文字を小文字として参照できる。isTestMethodの場合はtestMethodで参照可能
+- 戻り値の型はbooleanにする。バリデーションの結果、正当であればtrue、不当であればfalseを復帰値とする。
+
+この実装は
+フォームBeanにバリデーションロジックが入り込むということで、定義と実装が疎結合にならない部分が難点となります。
+この難点を回避するには実装方法2のバリデーションのアノテーションを自作する必要があります
+
+なお、InquiryForm.javaのgetEmailOrTelExistsメソッドにはこの実装が存在します。
+
+## 実装方法2
+
+独自アノテーションを追加しています。
+InquiryForm.javaに指定されている下記のアノテーションは独自アノテーションです。
+- @InquiryContactAnnotation
+  - クラスに指定するとemailかtelのどちらかが設定されているかどうかをチェックするTYPEアノテーション
+- @InquiryNameAnnotation
+  - フィールドに指定すると空かどうかをチェックするだけのFIELDアノテーション
+- @InquiryMultipleItemsAnnotation
+  - アノテーションから指定されたフィールドの要素が２つ以上入力されているかどうかをチェックするTYPEアノテーション
+
+これらのカスタムバリデーションは以下に実装が存在しています。
+- com.example.demo.validation
+
+
+## 実装方法3 
+TBD (今回はまだ実装を含めていません)
+
+

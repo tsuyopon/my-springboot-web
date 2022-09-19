@@ -6,18 +6,58 @@
 </head>
 <body>
 <h1 th:text="${title}">title</h1>
+
+
 <h2 th:text="${complete}"></h2><!-- フラッシュスコープはここに表示 -->
 <form method="post" action="#" th:action="@{/inquiry/confirm}" th:object="${inquiryForm}">
+
+    <h3>[[${#fields.globalErrors()}]]</h3>
+    <font color="red">共通エラー(fields.globalErrors()を表示します)</font><br>
+    <ul>
+    <div class="alert alert-danger" th:if="${#fields.hasGlobalErrors()}">
+            <li><p th:each="err : ${#fields.globalErrors()}" th:text="${err}" style="color:blue;">共通エラーメッセージ表示エリア</p></li>
+    </div>
+    </ul>
+    <br><br>
+
+    <font color="red">グローバルエラーを除く通常も含む全てのエラー(fields.allErrors()を表示します。fields.errors('*')かfields.errors('all')でも同様)</font><br>
+    <ul>
+        <li th:each="error: ${#fields.allErrors()}"><!-- fields.errors('*')かfields.errors('all')でも同様 -->
+            [[${error}]]
+        </li>
+    </ul>
+    <br><br>
+
+    <font color="red">エラーが1つでもあるかどうかをチェックします(fields.hasAnyErrors()による存在チェック)</font><br>
+    <div th:if="${#fields.hasAnyErrors()}">エラーが1つ以上あります</div>
+    <br><br>
+
     <label for="name">Name:</label>
     <input id="name" name="name" type="text" th:value="*{name}"><br>
-    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;" th:errorclass="error-style"></div><!-- th:errorclassはエラー時のみ追加されるclass属性 -->
+    </br>
+
     <label for="email">Email:</label>
     <input id="email" name="email" type="text" th:value="*{email}"><br>
-    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+    <!-- <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red;"></div> -->
+    <!-- 意図的に上記(Name)のエラー出力とは異なった記述方法としています。 -->
+    <ul th:each="error : ${#fields.errors('email')}">
+        <li th:text="${error}"></li>
+    </ul>
+
+    <label for="Tel">Tel:</label>
+    <input id="tel" name="tel" type="text" th:value="*{tel}"><br>
+    <div th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}" style="color:red;"></div>
+
     <label for="contents">Detail:</label>
     <textarea name="contents" id="contents" rows="3" cols="40" th:field="*{contents}"></textarea><br>
-    <div th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}"></div>
+    <div th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}" style="color:red;"></div>
+
     <input type="submit" value="Confirm">
+
+    <!-- 相関チェックのバリデーションエラー getEmailOrTelExistsメソッドにより判定している -->
+    <div th:if="${#fields.hasErrors('emailOrTelExists')}" th:errors="*{emailOrTelExists}" style="color:blue;"></div>
+
 </form>
 </body>
 </html>

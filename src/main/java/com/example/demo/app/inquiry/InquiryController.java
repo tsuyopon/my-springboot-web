@@ -70,7 +70,7 @@ public class InquiryController {
     // /inquery/confirm (POST)
     @PostMapping("/confirm")
     public String confirm(@Validated InquiryForm inquiryForm,  // @Validatedでバリデーションがかかるようになる
-                          BindingResult result,
+                          BindingResult result,                //
                           Model model) {
         if(result.hasErrors()){
             model.addAttribute("title", "Inquiry Form");
