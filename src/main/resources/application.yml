@@ -1,3 +1,7 @@
+cookie:
+  secure: false
+  max-age: 300
+
 spring:
   datasource:
     url: jdbc:h2:mem:test
@@ -7,6 +11,23 @@ spring:
   h2.console.enabled: true
   # 環境のProfileや application-<env>.ymlに影響
   #profiles.active: development
+  security:
+    oauth2:
+      client:
+        registration:
+          idp:
+            # 以下、テスト用
+            client-id: test1
+            client-secret: skes5xvkplk6vtfnj4unlxldvszxj5ao367qri3eahsn6hwszq
+            scope:
+              - openid
+              - profile
+              - email
+            authorization-grant-type: authorization_code
+        provider:
+          idp:
+            issuer-uri: http://192.168.3.19:5556/dex
+
 
 # 以下、設定値取得サンプル用
 app:
