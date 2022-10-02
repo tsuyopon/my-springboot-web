@@ -73,4 +73,13 @@ public class SampleController implements HandlerInterceptor {
         return "select"; // select.html
     }
 
+
+    //  /sample/admin
+    @GetMapping("/admin")
+    public String admin(Model model){
+        log.debug("GET /sample/admin start");
+        model.addAttribute("title", "Inquiry Form(Admin)");
+        return "test";  // test.html
+    }
+
 }

@@ -20,6 +20,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'com.h2database:h2'
+
+	// Spring Security用のスタータを追加 (ここから)
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// Spring Security用のスタータを追加 (ここまで)
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
