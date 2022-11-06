@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"> <!-- この記述がないとthymeleafが反映されません　-->
+
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">Insert title here</title>
+</head>
+<body>
+<h1 th:text="${title}">title</h1>
+<p><color font="red">portal top page.</color></p>
+
+<h3>サンプルエンドポイント</h3>
+<ul>
+  <li><a href="/sample/test">/sample/test: 指定されたhtmlファイルを表示するだけ。GETのみ対応</a></li>
+  <li><a href="/sample/select">/sample/select: 例外が飛んで全コントローラ共通のControllerAdviceに補足される例</a></li>
+</ul>
+
+<h3>環境サンプル</h3>
+<ul>
+  <li><a href="/examples/test1">/examples/test1: @Valuesの利用</a></li>
+  <li><a href="/examples/test2">/examples/test2: @ConfigurationPropertiesの利用</a></li>
+  <li><a href="/examples/profile">/examples/profile: @Profileによるメソッドの環境別出し訳サンプル</a></li>
+</ul>
+
+<h3>お問合せエンドポイント</h3>
+<ul>
+  <li><a href="/inquiry/form">/inquiry/form: お問合せ情報を登録する</a></li>
+  <li><a href="/inquiry/index">/inquiry/index: お問合せがあった一覧を表示する</a></li>
+  <li><a href="/inquiry/index_boot">/inquiry/index_boot: 「/inquiry/index」のbootstrapを利用バージョン</a></li>
+</ul>
+
+</body>
+</html>
