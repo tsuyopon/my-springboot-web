@@ -1,4 +1,4 @@
-package com.example.demo.app.inquiry;
+package com.example.demo.app.examples;
 
 import com.example.demo.service.InquiryService;
 import org.apache.commons.logging.Log;

@@ -1,4 +1,4 @@
-package com.example.demo.app.inquiry;
+package com.example.demo.app;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class TopController {
 
-    private static Log log = LogFactory.getLog(SampleController.class);
+    private static Log log = LogFactory.getLog(TopController.class);
 
     //  ポータルトップ用のエンドポイント
     @GetMapping("/")

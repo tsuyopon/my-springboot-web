@@ -24,5 +24,10 @@ app:
 # 設定項目参考: https://b1san-blog.com/post/spring/spring-log/
 logging:
   level:
-    root: INFO
-    com.example.demo: debug
+    #root: INFO
+    com.example.demo: DEBUG
+    # RestTemplate用のデバッグログ
+    # see: https://www.baeldung.com/spring-resttemplate-logging
+    org.apache.http: DEBUG
+    httpclient.wire: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG
