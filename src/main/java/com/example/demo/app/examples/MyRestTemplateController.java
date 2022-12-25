@@ -33,6 +33,9 @@ public class MyRestTemplateController {
     // 下記ドキュメントをみると、@AutowiredによりRestTemplateはDIできない模様。代わりに以下を呼び出す。
     // https://docs.spring.io/spring-boot/docs/1.4.0.RELEASE/reference/html/boot-features-restclient.html
     // > Since RestTemplate instances often need to be customized before being used, Spring Boot does not provide any single auto-configured RestTemplate bean
+    // ただ、以下の実装例ではこのクラスを呼び出す度に毎回生成されることになるので、そのようにしたくなければ、
+    // 下記の方法を使って別クラスに @Beanとして登録しておくのがよさそう。
+    //  https://reasonable-code.com/resttemplate/
     private final RestTemplate restTemplate;
     public MyRestTemplateController(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
