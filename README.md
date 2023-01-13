@@ -58,11 +58,13 @@ web:
 # 試す
 - 1. 以下にアクセスします。 
   - http://localhost:8080/auth/user
-- 2. ログインできれば「{"name":"admin"}」のように表示されます。(adminはSpring Securityから取得したユーザーになります)
-- 3. ログイン時にJSESSIONIDのCookieが発行されていることも確認してみてください。
-- 4. ログアウトする場合には以下のURLにアクセスします
+- 2. ログイン情報は下記でログインしてください。
+  - email: admin@example.com
+  - password: password
+- 3. ログインできれば「{"name":"admin"}」のように表示されます。(adminはSpring Securityから取得したユーザーになります)
+- 4. ログイン時にJSESSIONIDのCookieが発行されていることも確認してみてください。
+- 5. ログアウトする場合には以下のURLにアクセスします
   - http://localhost:8080/logout
-
 
 # 特記事項
 dexサーバの中でtcpdumpをするとどのエンドポイントにアクセスが来ているかを確認することができます。
