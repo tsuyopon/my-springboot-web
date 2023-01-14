@@ -58,7 +58,7 @@ web:
 # 試す
 - 1. 以下にアクセスします。 
   - http://localhost:8080/auth/user
-- 2. ログイン情報は下記でログインしてください。
+- 2. 「Log in with Email」を押下して、入力するログイン情報は下記を使用してください。
   - email: admin@example.com
   - password: password
 - 3. ログインできれば「{"name":"admin"}」のように表示されます。(adminはSpring Securityから取得したユーザーになります)
